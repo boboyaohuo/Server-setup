@@ -16,11 +16,11 @@
 
 2. 命令:arch 核查Linux系统的位数,根据位数下载对应的JDK以及Tomact**
 
-![jdk tomcat jenkins](https://img-blog.csdnimg.cn/20190730103416839.png "jdk tomcat jenkins")
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/01.png)
 
 3. jenkins下载命令 # wget http://mirrors.jenkins.io/war/latest/jenkins.war**
 
-![jenkins下载](https://img-blog.csdnimg.cn/20190730103734323.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZqeGNzZG4=,size_16,color_FFFFFF,t_70 "jenkins下载")
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/02.png)
 > 备注:可以将所有的软件下载到Windows,通过xftp上传到服务器,也可以在Linux服务器中直接下载
 
 4. 解压jdk和tomcat 解压文件到当前目录命令 #tar -zxvf 文件名**
@@ -29,7 +29,7 @@
 
 在JDK文件目录下输入命令,进行编辑 # vi /etc/profile 通过上下键定位到本页面最下面, 输入i进入编辑状态.此时会对应的出现INSET标志,表示处于可编辑状态
 
-![jdk编辑](https://img-blog.csdnimg.cn/20190730104904648.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZqeGNzZG4=,size_16,color_FFFFFF,t_70 "jdk编辑")
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/03.png)
 
     export JAVA_HOME=**jdk绝对路径（修改项）**
     export JRE_HOME=${JAVA_HOME}/jre
@@ -39,7 +39,7 @@
 
 - 插入上述内容，根据真实地址更改修改项。
 
-![地址更改](https://img-blog.csdnimg.cn/20190730112545733.png "地址更改")
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/04.png)
 
 - 编辑完成后,输入ESC退出,此时INSERT小时,表示退出了编辑状态,此时输入  :wq 表示保存退出.回车
 
@@ -47,7 +47,7 @@
 
 - 检查是否配置成功 命令 **# javac**
 
-![启动jdk](https://img-blog.csdnimg.cn/201907301122295.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZqeGNzZG4=,size_16,color_FFFFFF,t_70 "启动jdk")
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/05.png)
 
 ### 配置Tomcat的环境变量
 与JDK配置相同,首先定位到Tomact文件目录下,通过vi /ect/profile 命令进入编辑状态进行编辑,保存退出,让文件生效
@@ -56,18 +56,18 @@
 
 - 将上述内容加到末尾，根据真实地址更改修改项，退出同上
 
-![tomcat修改](https://img-blog.csdnimg.cn/20190730114321925.png "tomcat修改")
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/06.png)
 
 - 然后进入bin文件夹 **# cd bin**
 
 - 启动tomcat **# sh startup.sh**
 
-![启动tomcat](https://img-blog.csdnimg.cn/20190730115134449.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZqeGNzZG4=,size_16,color_FFFFFF,t_70 "启动tomcat")
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/07.png)
 
 ### Jenkins在Linux下部署
 将jenkins.war包放到tomcat/webapps/路径下， 启动Tomcat服务器,自动jar包会自动解压,生成Jenkins文件夹
 
-![jenkins部署](https://img-blog.csdnimg.cn/20190730143712685.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZqeGNzZG4=,size_16,color_FFFFFF,t_70 "jenkins部署")
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/08.png)
 
 >Tomact服务器默认端口号为8080,CentOs 7对8080端口没有开放.所以此时你访问Jenkins是无法访问的
 
@@ -79,7 +79,7 @@ firewall-cmd --zone=public --add-port=8080/tcp --permanent
 - 重启防火墙
 firewall-cmd --reload
 
-![linux防火墙](https://img-blog.csdnimg.cn/20190730153903533.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZqeGNzZG4=,size_16,color_FFFFFF,t_70 "linux防火墙")
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/09.png)
 
 #### 启动Tomcat,此时我们的本地浏览器就可以访问Jenkins,访问地址为,Linux虚拟机的IP:8080/jenkins/
 
@@ -88,12 +88,12 @@ firewall-cmd --reload
 ### 设置过程问题
 1. 首次访问设置插件处，离线模式
 
-![jenkins离线](https://img-blog.csdn.net/20180912172348797?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RhZXJ6ZWk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70 "jenkins离线")
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/10.png)
 
 - 打开 ip:8080/pluginManager/advanced
 - https://updates.jenkins.io/update-center.json 修改https为http
 
-![https转htto](https://img-blog.csdn.net/20180912172751464?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RhZXJ6ZWk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70 "https转htto")
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/11.png)
 
 - 重启Jenkins ip:8080/jenkins/resart
 
