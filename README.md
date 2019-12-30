@@ -31,18 +31,13 @@
 
 ![jdk编辑](https://img-blog.csdnimg.cn/20190730104904648.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZqeGNzZG4=,size_16,color_FFFFFF,t_70 "jdk编辑")
 
-> export JAVA_HOME=**jdk绝对路径（修改项）**
+    export JAVA_HOME=**jdk绝对路径（修改项）**
+    export JRE_HOME=${JAVA_HOME}/jre
+    export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib:$CLASSPATH
+    export JAVA_PATH=${JAVA_HOME}/bin:${JRE_HOME}/bin
+    export PATH=$PATH:${JAVA_PATH}
 
-> export JRE_HOME=${JAVA_HOME}/jre
-
-> export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib:$CLASSPATH
-
-> export JAVA_PATH=${JAVA_HOME}/bin:${JRE_HOME}/bin
-
-> export PATH=$PATH:${JAVA_PATH}
-
-- 插入上述内容，根据真实地址更改修改项
-
+- 插入上述内容，根据真实地址更改修改项。
 ![地址更改](https://img-blog.csdnimg.cn/20190730112545733.png "地址更改")
 
 - 编辑完成后,输入ESC退出,此时INSERT小时,表示退出了编辑状态,此时输入  :wq 表示保存退出.回车
