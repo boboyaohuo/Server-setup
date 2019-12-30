@@ -27,17 +27,22 @@
 
 ### 配置JDK环境变量
 
-** 在JDK文件目录下输入命令,进行编辑 # vi /etc/profile 通过上下键定位到本页面最下面, 输入i进入编辑状态.此时会对应的出现INSET标志,表示处于可编辑状态**
+**在JDK文件目录下输入命令,进行编辑 # vi /etc/profile 通过上下键定位到本页面最下面, 输入i进入编辑状态.此时会对应的出现INSET标志,表示处于可编辑状态**
 
 ![jdk编辑](https://img-blog.csdnimg.cn/20190730104904648.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZqeGNzZG4=,size_16,color_FFFFFF,t_70 "jdk编辑")
 
 > export JAVA_HOME=**jdk绝对路径（修改项）**
+
 > export JRE_HOME=${JAVA_HOME}/jre
+
 > export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib:$CLASSPATH
+
 > export JAVA_PATH=${JAVA_HOME}/bin:${JRE_HOME}/bin
+
 > export PATH=$PATH:${JAVA_PATH}
 
 - 插入上述内容，根据真实地址更改修改项
+
 ![地址更改](https://img-blog.csdnimg.cn/20190730112545733.png "地址更改")
 
 - 编辑完成后,输入ESC退出,此时INSERT小时,表示退出了编辑状态,此时输入  :wq 表示保存退出.回车
@@ -80,7 +85,7 @@ firewall-cmd --reload
 ## jenkins设置过程
 
 ### 设置过程问题
-####1. 首次访问设置插件处，离线模式
+#### 1. 首次访问设置插件处，离线模式
 ![jenkins离线](https://img-blog.csdn.net/20180912172348797?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2RhZXJ6ZWk=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70 "jenkins离线")
 - 打开 ip:8080/pluginManager/advanced
 
@@ -89,7 +94,7 @@ firewall-cmd --reload
 
 - 重启Jenkins ip:8080/jenkins/resart
 
-####2. 汉化问题
+#### 2. 汉化问题
 - 安装插件“Locale plugin”和“Localization: Chinese (Simplified)”
 
 - 在global configure里将语言设定为zh_US，Jenkins切换为英文。
