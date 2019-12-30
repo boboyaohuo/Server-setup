@@ -105,3 +105,11 @@ firewall-cmd --reload
 - 调用restart重启Jenkins：http://域名/restart。
 
 - 再次语言设定为zh_CN，刷新即可。
+3. 权限问题
+- 安装插件“Role-based Authorization Strategy”
+
+- 全局管理里授权策略更改成role-base
+
+- 系统管理里会出现Manager and Assign role管理项
+
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/12.png)
