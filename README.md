@@ -12,18 +12,18 @@
 ## 搭建过程
 ### 搭建linux centOS 7 环境 服务器默认配置，自己虚拟机搭建过程（略）
 
-1. 命令: ip addr 查看Linux虚拟机的IP地址,并通过finalshell进行连接**
+1. 命令: ip addr 查看Linux虚拟机的IP地址,并通过finalshell进行连接
 
-2. 命令:arch 核查Linux系统的位数,根据位数下载对应的JDK以及Tomact**
+2. 命令:arch 核查Linux系统的位数,根据位数下载对应的JDK以及Tomact
 
 ![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/01.png)
 
-3. jenkins下载命令 # wget http://mirrors.jenkins.io/war/latest/jenkins.war**
+3. jenkins下载命令 # wget http://mirrors.jenkins.io/war/latest/jenkins.war
 
 ![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/02.png)
 > 备注:可以将所有的软件下载到Windows,通过xftp上传到服务器,也可以在Linux服务器中直接下载
 
-4. 解压jdk和tomcat 解压文件到当前目录命令 #tar -zxvf 文件名**
+4. 解压jdk和tomcat 解压文件到当前目录命令 #tar -zxvf 文件名
 
 ### 配置JDK环境变量
 
