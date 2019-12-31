@@ -40,7 +40,9 @@
 ## 6.若想使用外部主机连接上虚拟机访问，需要关闭虚拟机的防火墙：
 
 centOS6及以前版本使用命令： systemctl stop iptables.service
+
 centOS7关闭防火墙命令： systemctl stop firewalld.service
+
 随后访问该ip即可看到nginx界面
 
 ## 7.nginx启动 关闭 重启命令
