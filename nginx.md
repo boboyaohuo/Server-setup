@@ -18,7 +18,7 @@
 ## 3.安装nginx
 
     //进入nginx目录
-    cd /usr/local/nginx
+    cd /usr/local/nginx/nginx-1.16.1
     //执行命令
     ./configure
     //执行make命令
