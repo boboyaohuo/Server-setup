@@ -13,7 +13,7 @@
     cd nginx
     //下载tar包
     wget http://nginx.org/download/nginx-1.16.1.tar.gz
-    tar -xvf nginx-1.16.1.tar.g
+    tar -zxvf nginx-1.16.1.tar.gz
 
 ## 3.安装nginx
 
