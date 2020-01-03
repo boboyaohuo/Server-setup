@@ -50,3 +50,56 @@ centOS7关闭防火墙命令： systemctl stop firewalld.service
     关闭：/usr/local/nginx/sbin/nginx -s stop
     重启: /usr/local/nginx/sbin/nginx -s reload
     注：在sbin目录执行命令的话，./nginx - stop 就可以
+    
+## 8.nginx.conf配置信息（ssl，favicon，重定向）
+    http {
+        include       mime.types;
+        default_type  application/octet-stream;
+
+        #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+        #                  '$status $body_bytes_sent "$http_referer" '
+        #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+        #access_log  logs/access.log  main;
+
+        sendfile        on;
+        #tcp_nopush     on;
+
+        #keepalive_timeout  0;
+        keepalive_timeout  65;
+
+        #gzip  on;
+
+        server {
+        listen 80;
+        server_name *.wujianbo.com wujianbo.com;
+        rewrite ^/(.*) https://$host/$1 permanent;
+        }
+
+        # HTTPS server
+        #
+        server {
+            listen       443 ssl;
+            server_name  *.wujianbo.com wujianbo.com;
+
+            ssl_certificate      1_www.wujianbo.com_bundle.crt;
+            ssl_certificate_key  2_www.wujianbo.com.key;
+            ssl_session_timeout  5m;
+            ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+            ssl_ciphers  ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
+            ssl_prefer_server_ciphers  on;
+
+            location / {
+                root   /var/www/html;
+                index  index.html index.htm;
+                try_files $uri $uri/ /index.html;
+            }
+
+            location = /favicon.ico {
+                root  /var/www/html;
+                log_not_found off;
+                access_log off;
+            }
+        }
+
+    }
