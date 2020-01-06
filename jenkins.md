@@ -121,6 +121,8 @@ firewall-cmd --reload
 enkins即为项目名称，path为默认
 
 5、重启tomcat，输入http://jenkins.wujianbo.com 试试吧！
+> 注：通过反向代理之后，会造成jenkins接口的403错误，是因为 jenkins 默认安全设置里面开启了 防止款站点请求伪造。
+> 解决方法：取消勾选 **Jenkins > 全局安全配置 > CSRF Protection** ，就可以了
 
 
 ### 设置过程问题
