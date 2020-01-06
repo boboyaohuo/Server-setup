@@ -120,7 +120,7 @@ firewall-cmd --reload
         
 enkins即为项目名称，path为默认
 
-5、重启tomcat，输入http://jenkins.wujianbo.com试试吧！
+5、重启tomcat，输入http://jenkins.wujianbo.com 试试吧！
 
 
 ### 设置过程问题
