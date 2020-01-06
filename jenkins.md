@@ -9,6 +9,9 @@
 ## 软件
 1. finalshell
 
+
+
+
 ## 搭建过程
 ### 搭建linux centOS 7 环境 服务器默认配置，自己虚拟机搭建过程（略）
 
@@ -24,6 +27,9 @@
 > 备注:可以将所有的软件下载到Windows,通过xftp上传到服务器,也可以在Linux服务器中直接下载
 
 4. 解压jdk和tomcat 解压文件到当前目录命令 #tar -zxvf 文件名
+
+
+
 
 ### 配置JDK环境变量
 
@@ -49,6 +55,8 @@
 
 ![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/05.png)
 
+
+
 ### 配置Tomcat的环境变量
 与JDK配置相同,首先定位到Tomact文件目录下,通过vi /ect/profile 命令进入编辑状态进行编辑,保存退出,让文件生效
 
@@ -63,6 +71,8 @@
 - 启动tomcat **# sh startup.sh**
 
 ![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/07.png)
+
+
 
 ### Jenkins在Linux下部署
 将jenkins.war包放到tomcat/webapps/路径下， 启动Tomcat服务器,自动jar包会自动解压,生成Jenkins文件夹
@@ -81,12 +91,41 @@ firewall-cmd --reload
 
 ![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/09.png)
 
+
+
+
 #### 启动Tomcat,此时我们的本地浏览器就可以访问Jenkins,访问地址为,Linux虚拟机的IP:8080/jenkins/
 
 ## jenkins设置过程
 
+
+### jenkins根域名设置
+以tomcat应用服务器为例，我们将一个jenkins的项目部署到tomcat的webapps下面，启动tomcat，默认输入地址：http://localhost:8080/jenkins 访问项目，但是我们如何通过输入http://自己想要的域名 来直接访问项目呢，在此以jenkins.wujianbo.com为示例域名。
+
+1. 使用nginx反向代理，将80端口 jenkins.wujianbo.com反向代理到 http://localhost:8080/ 此时，你如果再去访问项目，只需要输入http://jenkins.wujianbo.com/jenkins 就可以访问了。
+
+2. 修改tomcat的conf文件夹下的server.xml文件：将engine的defaultHost改为jenkins.wujianbo.com
+        
+        <Engine name="Catalina" defaultHost="jenkins.lilian.com">
+
+3. 将Host的name改为自己想要的域名
+        
+        <Host name="jenkins.lilian.com"  appBase="webapps"
+
+4. 在<Host></Host>内部加入<Context/>标签，如下：
+        
+        <Host name="jenkins.lilian.com"  appBase="webapps"
+            unpackWARs="true" autoDeploy="true">
+        <Context docBase="jenkins" path="" reloadable="true" />   加入词句
+        
+enkins即为项目名称，path为默认
+
+5、重启tomcat，输入http://jenkins.wujianbo.com试试吧！
+
+
 ### 设置过程问题
-1. 首次访问设置插件处，离线模式
+
+### 1. 首次访问设置插件处，离线模式
 
 ![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/10.png)
 
@@ -97,7 +136,9 @@ firewall-cmd --reload
 
 - 重启Jenkins ip:8080/jenkins/resart
 
-2. 汉化问题
+
+
+### 2. 汉化问题
 - 安装插件“Locale plugin”和“Localization: Chinese (Simplified)”
 
 - 在global configure里将语言设定为zh_US，Jenkins切换为英文。
@@ -105,7 +146,10 @@ firewall-cmd --reload
 - 调用restart重启Jenkins：http://域名/restart。
 
 - 再次语言设定为zh_CN，刷新即可。
-3. 权限问题
+
+
+
+### 3. 权限问题
 - 安装插件“Role-based Authorization Strategy”
 
 - 全局管理里授权策略更改成role-base
