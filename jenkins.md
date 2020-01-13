@@ -159,3 +159,61 @@ enkins即为项目名称，path为默认
 - 系统管理里会出现Manager and Assign role管理项
 
 ![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/12.png)
+
+## jenkins 初始化使用
+
+1. 在浏览器输入http://服务器IP:8080 打开jenkins，首次打开需要获取管理员的密码
+
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/13.png)
+
+2. 安装默认插件：输入密码，提交完成之后会跳转到插件安装页面，选择第一个然后进行安装
+
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/14.png)
+
+3. 接下来默认插件安装完成之后，创建一个管理员账户，完成配置后，就可以登录 Jenkins 了
+
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/15.png)
+
+4. 安装 NodeJs插件，用于vue项目打包构建。
+
+打开系统管理 => 管理插件 搜索 NodeJs然后勾选安装
+打开系统管理 => 全局工具配置 拉到底部 配置 node 版本
+
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/16.png)
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/17.png)
+
+## jenkins 配合github 实现vue等前端项目的自动构建与发布
+
+1. 新建任务：点击新建任务 => 输入任务名称，选择构建一个自由风格的软件项目然后确定
+
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/18.png)
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/19.png)
+
+2. 配置git，进入任务配置，选择源码管理 ，因为github上的项目是开源的，所以无需填写账号密码
+
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/20.png)
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/21.png)
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/22.png)
+
+3. 设置构建环境，选择 Provide Node & npm bin/ folder to PATH 然后选择之前安装插件时候配置的node版本
+
+![avatar](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/23.png)
+
+4. 置项目自动化打包，选择 增加构建步骤 => Excute shell 这个是运行相关的sh命令（这一步建议耗时操作分离步骤）
+
+        cd /var/lib/jenkins/workspace/hxkj #进入Jenkins工作空间下hxkj项目目录
+        node -v #检测node版本（此条命令非必要）
+        npm -v #检测npm版本（此条命令非必要）
+        npm config set registry https://registry.npm.taobao.org #把npm源设置为淘宝源（这个你懂的）
+        npm config get registry #检测npm是否切换成功（此条命令非必要）
+        npm install #安装项目中的依赖
+        npm run build #打包
+        cd dist
+        rm -rf hxkj.tar.gz #删除上次打包生成的压缩文件（一般建议备份，不要直接删除，这边测试就无所谓啦）
+        tar -zcvf hxkj.tar.gz * #把生成的项目打包成压缩包，方便移动到项目部署目录
+        cd /usr/share/nginx/hxkj #进入web项目根目录
+        mv /var/lib/jenkins/workspace/hxkj/dist/hxkj.tar.gz ./  #移动刚刚打包好的项目到web项目根目录
+        tar -zxvf hxkj.tar.gz -C dist/  #解压项目到dist目录
+        rm -rf hxkj.tar.gz    #删除压缩包
+        
+5. 保存后点击立即构建查看任务是否能够成功构建，控制台输出 菜单可以查看构建日志。
