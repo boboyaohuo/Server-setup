@@ -25,4 +25,4 @@
         sudo systemctl start docker
 
 [命令行大全](https://www.runoob.com/docker/docker-command-manual.html)
-![图示](http://img3.imgtn.bdimg.com/it/u=4161548211,506321560&fm=15&gp=0.jpg)
+![avatar](http://img3.imgtn.bdimg.com/it/u=4161548211,506321560&fm=15&gp=0.jpg)
