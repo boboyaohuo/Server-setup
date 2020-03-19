@@ -217,3 +217,7 @@ enkins即为项目名称，path为默认
         rm -rf hxkj.tar.gz    #删除压缩包
         
 5. 保存后点击立即构建查看任务是否能够成功构建，控制台输出 菜单可以查看构建日志。
+
+6. windows+jenkins+github配置图
+
+![windows+jenkins+github配置图](https://raw.githubusercontent.com/boboyaohuo/staticFile/master/image/24.png)
