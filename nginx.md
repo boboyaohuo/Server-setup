@@ -84,36 +84,41 @@ centOS7关闭防火墙命令： systemctl stop firewalld.service
         #keepalive_timeout  0;
         keepalive_timeout  65;
 
-        #gzip  on;
+        gzip  on;
+        gzip_min_length 10k;
+        gzip_buffers 4 16k;
+        gzip_comp_level 3;
+        gzip_types text/plain application/javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;
+
 
         server {
-        listen 80;
-        server_name www.wujianbo.com wujianbo.com;
-        rewrite ^/(.*) https://$host/$1 permanent;
+            listen 80;
+            server_name www.wujianbo.com wujianbo.com;
+            rewrite ^/(.*) https://$host/$1 permanent;
         }
 
         server {
-        listen 80;
-        server_name github.wujianbo.com;
-        rewrite ^/(.*) https://github.com/boboyaohuo permanent;
+            listen 80;
+            server_name github.wujianbo.com;
+            rewrite ^/(.*) https://github.com/boboyaohuo permanent;
         }
 
         server {
-        listen 80;
-        server_name weibo.wujianbo.com;
-        rewrite ^/(.*) https://weibo.com/6023938741 permanent;
+            listen 80;
+            server_name weibo.wujianbo.com;
+            rewrite ^/(.*) https://weibo.com/6023938741 permanent;
         }
 
         server {
-        listen 80;
-        server_name jenkins.wujianbo.com;	
+            listen 80;
+            server_name jenkins.wujianbo.com;	
 
-        location / {
-                    proxy_pass http://localhost:8080/;
-                    add_header Access-Control-Allow-Origin *;
+            location / {
+                proxy_pass http://localhost:8080/;
+                add_header Access-Control-Allow-Origin *;
             }
 
-        location = /favicon.ico {
+            location = /favicon.ico {
                 root  /var/www/html;
                 log_not_found off;
                 access_log off;
@@ -121,9 +126,9 @@ centOS7关闭防火墙命令： systemctl stop firewalld.service
         }
 
         server {
-        listen 80; 
-        server_name 150.109.118.154;
-        rewrite ^/(.*) https://www.wujianbo.com permanent;
+            listen 80; 
+            server_name 150.109.118.154;
+            rewrite ^/(.*) https://www.wujianbo.com permanent;
         }
 
         # HTTPS server
@@ -135,18 +140,18 @@ centOS7关闭防火墙命令： systemctl stop firewalld.service
             ssl_certificate      1_www.wujianbo.com_bundle.crt;
             ssl_certificate_key  2_www.wujianbo.com.key;
             ssl_session_timeout  5m;
-        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+            ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
             ssl_ciphers  ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;
             ssl_prefer_server_ciphers  on;
 
             location / {
                 root   /var/www/html;
                 index  index.html index.htm;
-            try_files $uri $uri/ /index.html;
-        }
+                try_files $uri $uri/ /index.html;
+            }
 
-        location = /favicon.ico {
-            root  /var/www/html;
+            location = /favicon.ico {
+                root  /var/www/html;
                 log_not_found off;
                 access_log off;
             }
